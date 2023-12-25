@@ -1,0 +1,45 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        // Check if the list is empty
+        if (head == null)
+            return null;
+
+        // Initialize pointers for traversal
+        ListNode temp = head.next;
+        ListNode prev = head;
+
+        // Traverse the list and delete duplicate nodes
+        while (temp != null) {
+            // Check if the current node has the same value as the previous node
+            if (prev.val == temp.val) {
+                // Update the 'next' pointer of the previous node to skip the current node
+                prev.next = temp.next;
+                // Move the 'temp' pointer to the next node
+                temp = temp.next;
+            } else {
+                // Move both pointers to the next node
+                prev = temp;
+                temp = temp.next;
+            }
+        }
+
+        // Return the modified head of the list
+        return head;
+    }
+}
+// Approach:
+// - Initialize two pointers: temp and prev.
+// - Traverse the list while comparing the values of consecutive nodes.
+// - If a duplicate is found, update the 'next' pointer of the previous node to skip the duplicate node.
+// - Move the pointers accordingly.
+// - Return the modified head of the list after removing duplicates.

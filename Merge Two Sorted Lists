@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        // Create a dummy node to simplify the code
+        ListNode dummy = new ListNode(-1);
+        // 'current' will be used to traverse and build the merged list
+        ListNode current = dummy;
+
+        // Traverse both lists until one of them is empty
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                // If the value in list1 is smaller, add it to the merged list
+                current.next = list1;
+                list1 = list1.next;
+            } else {
+                // If the value in list2 is smaller, add it to the merged list
+                current.next = list2;
+                list2 = list2.next;
+            }
+            // Move the 'current' pointer to the newly added node
+            current = current.next;
+        }
+
+        // If one of the lists is not empty, append the remaining nodes to the merged list
+        if (list1 != null) {
+            current.next = list1;
+        } else {
+            current.next = list2;
+        }
+
+        // The merged list starts from the next of the dummy node
+        return dummy.next;
+    }
+}
+// Approach:
+// - Create a dummy node to simplify the code.
+// - Initialize a 'current' pointer to traverse and build the merged list.
+// - Traverse both lists until one of them is empty.
+// - Compare the values of the current nodes in list1 and list2.
+// - Add the smaller value to the merged list and move the respective list's pointer forward.
+// - Move the 'current' pointer to the newly added node.
+// - If one of the lists is not empty, append the remaining nodes to the merged list.
+// - Return the head of the merged list (starts from the next of the dummy node).

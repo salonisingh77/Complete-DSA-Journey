@@ -1,0 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+   
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // Initialize two pointers, a and b, to the heads of the linked lists
+        ListNode a = headA, b = headB;
+
+        // Iterate until either the two pointers meet (intersection) or reach the end of both lists
+        while (a != b) {
+            // Move pointer a to the next node in listA; if it reaches the end, reset to the head of listB
+            a = (a != null) ? a.next : headB;
+
+            // Move pointer b to the next node in listB; if it reaches the end, reset to the head of listA
+            b = (b != null) ? b.next : headA;
+        }
+
+        // At this point, a and b either point to the intersection node or are both null (no intersection)
+        // Return the intersection node if it exists, otherwise return null
+        return a;
+    }
+}

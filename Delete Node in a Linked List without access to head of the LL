@@ -1,0 +1,25 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val=node.next.val;
+        node.next=node.next.next;
+        
+    }
+}
+
+In this solution, instead of deleting the given node directly, we copy the value of the next node to the current node and then remove the next node. This effectively "deletes" the current node without having access to the head of the linked list.
+
+The time complexity of this approach is O(1) because we only perform a constant number of operations regardless of the size of the linked list.
+
+
+
+
+
+
